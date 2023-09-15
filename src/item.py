@@ -23,10 +23,16 @@ class Item:
 
     @property
     def name(self):
+        """
+        геттер приватного атрибута класса
+        """
         return self.__name
 
     @name.setter
     def name(self, name):
+        """
+        сеттер приватного атрибута класса
+        """
         if len(name) <= 10:
             self.__name = name
         else:
@@ -34,6 +40,9 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls, args):
+        """
+        класс-метод, инициализирующий экземпляры класса данными из файла *.csv
+        """
         cls.all.clear()
         with open(args, newline="", encoding="windows-1251") as csvfile:
             reader = csv.DictReader(csvfile)
@@ -44,6 +53,9 @@ class Item:
 
     @staticmethod
     def string_to_number(args: str):
+        """
+        статический метод, возвращающий число из числа-строки
+        """
         if "." in args:
             args = args.split(".")[0]
             return int(args)
@@ -51,6 +63,9 @@ class Item:
             return int(args)
 
     def __repr__(self):
+        """
+        репрезентация полей класса
+        """
         return f"Item('name={self.name}', 'price={self.price}', 'quantity={self.quantity}')"
 
     def calculate_total_price(self) -> float:
