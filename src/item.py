@@ -45,7 +45,7 @@ class Item:
     @staticmethod
     def string_to_number(args: str):
         if "." in args:
-            args = str(args).split('.')[0]
+            args = args.split(".")[0]
             return int(args)
         else:
             return int(args)

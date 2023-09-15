@@ -1,4 +1,3 @@
-import os
 
 from src.item import Item
 
