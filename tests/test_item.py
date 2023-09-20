@@ -12,7 +12,11 @@ def item1():
 
 
 def test__repr__(item1):
-    assert item1.__repr__() == "Item('name=Смартфон', 'price=10000', 'quantity=20')"
+    assert item1.__repr__() == "Item('Смартфон', 10000, 20)"
+
+
+def test_str(item1):
+    assert item1.__str__() == "Смартфон"
 
 
 def test_calculate_total_price(item1):
