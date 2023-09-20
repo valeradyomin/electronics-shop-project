@@ -69,6 +69,9 @@ class Item:
         return f"{__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
 
     def __str__(self):
+        """
+        отображения информации об объекте класса для пользователей
+        """
         return f"{self.name}"
 
     def calculate_total_price(self) -> float:
