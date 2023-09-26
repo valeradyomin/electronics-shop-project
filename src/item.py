@@ -24,14 +24,14 @@ class Item:
     @property
     def name(self):
         """
-        геттер приватного атрибута класса
+        Геттер приватного атрибута класса
         """
         return self.__name
 
     @name.setter
     def name(self, name):
         """
-        сеттер приватного атрибута класса
+        Сеттер приватного атрибута класса
         """
         if len(name) <= 10:
             self.__name = name
@@ -41,7 +41,7 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls, args):
         """
-        класс-метод, инициализирующий экземпляры класса данными из файла *.csv
+        Класс-метод, инициализирующий экземпляры класса данными из файла *.csv
         """
         cls.all.clear()
         with open(args, newline="", encoding="windows-1251") as csvfile:
@@ -54,7 +54,7 @@ class Item:
     @staticmethod
     def string_to_number(args: str):
         """
-        статический метод, возвращающий число из числа-строки
+        Статический метод, возвращающий число из числа-строки
         """
         if "." in args:
             args = args.split(".")[0]
@@ -64,13 +64,13 @@ class Item:
 
     def __repr__(self):
         """
-        репрезентация полей класса
+        Репрезентация полей класса
         """
         return f"{__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
 
     def __str__(self):
         """
-        отображения информации об объекте класса для пользователей
+        Отображение информации об объекте класса для пользователей
         """
         return f"{self.name}"
 
@@ -88,3 +88,11 @@ class Item:
         Применяет установленную скидку для конкретного товара.
         """
         self.price = self.price * Item.pay_rate
+
+    def __add__(self, other):
+        """
+        Переопределение магического метода для сложения количества товаров с проверкой
+        """
+        if not isinstance(other, Item):
+            raise ValueError("Складывать можно только объекты Item и дочерние от них")
+        return self.quantity + other.quantity

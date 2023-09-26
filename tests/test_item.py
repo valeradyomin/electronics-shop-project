@@ -4,11 +4,17 @@ import csv
 import pytest
 
 from src.item import Item
+from src.phone import Phone
 
 
 @pytest.fixture
 def item1():
     return Item("Смартфон", 10000, 20)
+
+
+@pytest.fixture
+def phone1():
+    return Phone("iPhone 14", 120_000, 5, 2)
 
 
 def test__repr__(item1):
@@ -70,3 +76,10 @@ def test_string_to_number():
     assert Item.string_to_number("5") == 5
     assert Item.string_to_number("7.8") == 7
     assert Item.string_to_number("3.14") == 3
+
+
+def test_summ_quantity(item1, phone1):
+    assert phone1 + item1 == 25
+    assert item1 + phone1 == 25
+    with pytest.raises(ValueError):
+        assert phone1 + 10 == 15
