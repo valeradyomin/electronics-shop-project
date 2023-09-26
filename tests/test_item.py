@@ -12,6 +12,11 @@ def item1():
     return Item("Смартфон", 10000, 20)
 
 
+@pytest.fixture
+def phone1():
+    return Phone("iPhone 14", 120_000, 5, 2)
+
+
 def test__repr__(item1):
     assert item1.__repr__() == "Item('Смартфон', 10000, 20)"
 
@@ -73,9 +78,7 @@ def test_string_to_number():
     assert Item.string_to_number("3.14") == 3
 
 
-def test_summ_quantity():
-    item1 = Item("Смартфон", 10000, 20)
-    phone1 = Phone("iPhone 14", 120_000, 5, 2)
+def test_summ_quantity(item1, phone1):
     assert phone1 + item1 == 25
     assert item1 + phone1 == 25
     with pytest.raises(ValueError):
