@@ -22,3 +22,5 @@ def test_change_lang(keyboard1):
     assert keyboard1.language == "RU"
     keyboard1.change_lang()
     assert keyboard1.language == "EN"
+    with pytest.raises(AttributeError):
+        keyboard1.language = "CH"
