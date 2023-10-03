@@ -2,6 +2,9 @@ import csv
 
 
 class InstantiateCSVError(Exception):
+    """
+    Класс определяет пользовательское исключение.
+    """
     def __init__(self, *args, **kwargs):
         self.message = args[0] if args else 'Файл item.csv поврежден.'
 
@@ -48,6 +51,9 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls, path_to_csv="../src/items.csv"):
+        """
+        Класс метод для создания объектов из данных файла. Использует перехват исключений.
+        """
         cls.all.clear()
         try:
             with open(path_to_csv, newline="", encoding="windows-1251") as csvfile:
