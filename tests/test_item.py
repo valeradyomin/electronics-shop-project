@@ -3,7 +3,7 @@ import csv
 
 import pytest
 
-from src.item import Item
+from src.item import Item, InstantiateCSVError
 from src.phone import Phone
 
 
@@ -83,3 +83,19 @@ def test_summ_quantity(item1, phone1):
     assert item1 + phone1 == 25
     with pytest.raises(ValueError):
         assert phone1 + 10 == 15
+
+
+def test_instantiate_csv_error():
+    error = InstantiateCSVError()
+    assert error.args == ()
+    assert str(error) == 'Файл item.csv поврежден.'
+
+
+def test_instantiate_from_csv_non_exist_file():
+    result = Item.instantiate_from_csv("nonexistent_file.csv")
+    assert result is None
+
+
+def test_instantiate_from_csv_corrupted_file():
+    result = Item.instantiate_from_csv("../src/items2.csv")
+    assert result is None
